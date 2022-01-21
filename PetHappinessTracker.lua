@@ -18,5 +18,8 @@ function PHT:OnInitialize()
 end
 
 function PHT:OnEnable()
-
+    PHT:CreateOptionsGUI()
+    PHT:CreateMinimapIcon()
+    PHT:CreateStatusFrame()
+    PHT:StartIdleTimer()
 end
