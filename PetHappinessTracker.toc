@@ -1,0 +1,18 @@
+## Interface: 20503
+## Version: 0.0.1
+## Title: Pet Happiness Tracker
+## Notes: Estimates and displays pet happiness
+## SavedVariables: PHTDB
+## SavedVariablesPerCharacter: PHTCDB
+## Author: Carls
+
+embeds.xml
+Database/Default.lua
+
+PetHappinessTracker.lua
+
+Services/PetHappiness.lua
+
+Components/StatusFrame.lua
+Components/MinimapButton.lua
+Components/OptionsFrame.lua
