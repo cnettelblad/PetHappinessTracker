@@ -62,7 +62,7 @@ function PHT:CLEUEvent(
     if not UnitExists("pet") or destGUID ~= UnitGUID("pet") then 
         return 
     end
-    print(timestamp, subevent, _, sourceGUID, sourceName, destGUID, destName)
+    -- print(timestamp, subevent, _, sourceGUID, sourceName, destGUID, destName)
     -- Feeding events
     if (subevent == "SPELL_PERIODIC_ENERGIZE" or subevent == "SPELL_ENERGIZE") then
         local amount = select(4, ...)
