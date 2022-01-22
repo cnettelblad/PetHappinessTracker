@@ -27,10 +27,14 @@ function PHT:CreateStatusFrame()
     StatusFrame.text:SetText(PHTCDB.Pet.HappinessPoints)
     -- StatusFrame:SetParent(PetFrame)
     StatusFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    StatusFrame:RegisterEvent("UNIT_HAPPINESS")
 
     StatusFrame:SetScript(
         "OnEvent",
         function(self, event)
+            if event == "UNIT_HAPPINESS" then
+                PHT:HappinessEvent()
+            end
             PHT:CLEUEvent(CombatLogGetCurrentEventInfo())
         end
     )
