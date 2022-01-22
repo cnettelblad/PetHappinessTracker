@@ -18,7 +18,7 @@ PHTDB_DEFAULTS = {
 
 PHTCDB_DEFAULTS = {
     Pet = {
-        Happiness = "Sad",
+        HappinessLevel = 3,
         HappinessPoints = 1050,
     }
 }
