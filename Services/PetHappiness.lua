@@ -10,6 +10,7 @@ local function AddPoints(amount)
 end
 
 local function DeductPoints(amount)
+    print("Deducting "..amount.." points")
     PHTCDB.Pet.HappinessPoints = math.max(
         0,
         PHTCDB.Pet.HappinessPoints - amount
@@ -61,7 +62,7 @@ function PHT:CLEUEvent(
     if not UnitExists("pet") or destGUID ~= UnitGUID("pet") then 
         return 
     end
-
+    print(timestamp, subevent, _, sourceGUID, sourceName, destGUID, destName)
     -- Feeding events
     if (subevent == "SPELL_PERIODIC_ENERGIZE" or subevent == "SPELL_ENERGIZE") then
         local amount = select(4, ...)
@@ -69,12 +70,12 @@ function PHT:CLEUEvent(
     end
 
     -- Pet death (Ignores Steam Tonk)
-    if subEvent == "UNIT_DIED" and destName ~= "Steam Tonk" then
+    if subevent == "UNIT_DIED" and destName ~= "Steam Tonk" then
         return DeductPoints(350)
     end
 
     -- Pet Dismiss
-    if subEvent == "SPELL_DRAIN" and sourceName == UnitName("player") then 
+    if subevent == "SPELL_DRAIN" and sourceName == UnitName("player") then 
         return DeductPoints(50)
     end
 end
@@ -83,6 +84,7 @@ function PHT:StartIdleTimer()
     IdleTimer = C_Timer.NewTicker(
         7.2,
         function()
+            if not UnitExists("pet") then return end 
             DeductPoints(1)
         end
     )
