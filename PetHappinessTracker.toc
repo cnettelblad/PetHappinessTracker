@@ -1,6 +1,6 @@
 ## Interface: 20503
 ## Version: 0.0.1
-## Title: Pet Happiness Tracker
+## Title: |cffAAD372Pet Happiness Tracker|r
 ## Notes: Estimates and displays pet happiness
 ## SavedVariables: PHTDB
 ## SavedVariablesPerCharacter: PHTCDB
