@@ -20,5 +20,9 @@ PHTCDB_DEFAULTS = {
     Pet = {
         HappinessLevel = 3,
         HappinessPoints = 1050,
+    },
+    Benchmark = {
+        LatestMin = nil,
+        LatestMax = nil,
     }
 }

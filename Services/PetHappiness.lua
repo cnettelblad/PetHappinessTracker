@@ -10,7 +10,6 @@ local function AddPoints(amount)
 end
 
 local function DeductPoints(amount)
-    print("Deducting "..amount.." points")
     PHTCDB.Pet.HappinessPoints = math.max(
         0,
         PHTCDB.Pet.HappinessPoints - amount
@@ -23,25 +22,17 @@ local function SetMaxPoints()
     PHT:UpdateStatusFrame()
 end
 
+--[[
+    
+--]]
 local function EnergizeEvent(amount)
-    local validAmounts = {
-        8,  -- Lowest possible
-        10, -- Kibbler's bits
-        17, -- Medium (low-level) food
-        35  -- Maximum level food
-    }
+    local validAmounts = {8, 10, 17, 35}
     for k, v in pairs(validAmounts) do
         if v == amount then 
-            AddPoints(amount)
-            return
+            return AddPoints(amount)
         end
     end
-    --[[
-        If the above numbers aren't matched
-        it means that the pet reached maximum
-        happiness.
-    --]]
-    SetMaxPoints()
+    return SetMaxPoints()
 end
 
 function PHT:CLEUEvent(
@@ -81,16 +72,14 @@ function PHT:CLEUEvent(
 end
 
 function PHT:HappinessEvent()
-    print("HappinessEvent fired")
     -- Happiness value 1-3 (1 = Unhappy, 2 = Content, 3 = Happy)
     local happiness = GetPetHappiness()
     local happinessPoints = ({0, 350, 750})[happiness]
 
     -- Logic for when HappinessLevel is increased
-    print(happiness, PHTCDB.Pet.HappinessLevel)
     if happiness > PHTCDB.Pet.HappinessLevel then
         PHTCDB.Pet.HappinessLevel = happiness
-        if PHTCDB.Benchmark ~= nil then
+        if PHTCDB.Benchmark.LatestMax ~= nil then
             PHTCDB.Benchmark.LatestMin = time()
             print(PHTCDB.Benchmark.LatestMax - PHTCDB.Benchmark.LatestMin)
         end
